@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Ciudades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="text" id="nameCities"> <input type="text" id="country"><button type="button"
-        onclick="postCities()">nueva city</button>
-    <div id="citiesContainer"></div>
+    <header class="app-header">
+        <h1><i class="fas fa-city"></i> Gestor de Ciudades</h1>
+    </header>
+
+    <main class="app-container">
+        <section class="add-city-section">
+            <h2>Añadir Nueva Ciudad</h2>
+            <div class="input-group">
+                <input type="text" id="nameCities" placeholder="Nombre de la ciudad">
+                <input type="text" id="country" placeholder="País">
+                <button class="btn-primary" onclick="postCities()">
+                    <i class="fas fa-plus"></i> Añadir
+                </button>
+            </div>
+        </section>
+
+        <section class="cities-list-section">
+            <h2>Lista de Ciudades</h2>
+            <div id="citiesContainer" class="cities-container"></div>
+        </section>
+    </main>
+
+    <!-- Modal de Edición -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Ciudad</h2>
+            <div class="input-group">
+                <input type="text" id="editNameCities" placeholder="Nombre de la ciudad">
+                <input type="text" id="editCountry" placeholder="País">
+                <button class="btn-primary" onclick="updateCity()">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+            </div>
+            <input type="hidden" id="editCityId">
+        </div>
+    </div>
+
     <script src="manin.js"></script>
 </body>
 </html>

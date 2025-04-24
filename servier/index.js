@@ -67,6 +67,28 @@ app.delete("/cities/:id", (req, res) => {
   });
 });
 
+app.put("/cities/:id", (req, res) => {
+  const idUpdate = req.params.id;
+  if (!req.body) {
+    return res.status(400).send("Data to update cannot be empty!");
+  }
+  const nameToUpdate = req.body.name;
+  const countryToUpdate = req.body.country;
+  if (!nameToUpdate || !countryToUpdate) {
+    return res.status(400).send("Data to update cannot be empty!");
+  }
+  const sql = "UPDATE prueba.cities SET name = ?, country = ? WHERE id = ?";
+  const values = [nameToUpdate, countryToUpdate, idUpdate];
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      res.status(500).send("An error occurred while updating the city.");
+    } else {
+      res.send("City updated successfully.");
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`App listening on ${port}`);
 });
